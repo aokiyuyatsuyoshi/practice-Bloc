@@ -9,7 +9,9 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      ///BlocBuilder(使用するBloc, そのblocのstate)
       body: BlocBuilder<CounterBloc, int>(
+        ///builder(context, そのblocのstate)
         builder: (_, count) {
           return Center(
             child: Column(
