@@ -1,27 +1,31 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:practice_bloc/home-Bloc.dart';
 import 'package:practice_bloc/widget.dart';
 
-import 'home-Bloc.dart';
-import 'home-provider.dart';
-
-class HomePage extends HookWidget {
+class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int count = useProvider(Global_Provider).bloc.state;
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text('$count'),
-          ),
-          PlusButton(context),
-          MinusButton(context),
-          MultipleButton(context),
-          ClearButton(context),
-        ],
+      body: BlocBuilder<CounterBloc, int>(
+        builder: (_, count) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$count',
+                ),
+                PlusButton(context),
+                MinusButton(context),
+                MultipleButton(context),
+                ClearButton(context),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

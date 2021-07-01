@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+// import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'home-Bloc.dart';
 import 'home-provider.dart';
 import 'home.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///+ボタンのウィジェット
 Widget PlusButton(BuildContext context) {
@@ -13,7 +15,7 @@ Widget PlusButton(BuildContext context) {
       onPrimary: Colors.white,
     ),
     onPressed: () {
-      context.read(Global_Provider).BlocIncrement();
+      context.read<CounterBloc>().add(CounterEvent.increment);
     },
   );
 }
@@ -27,7 +29,7 @@ Widget MinusButton(BuildContext context) {
       onPrimary: Colors.white,
     ),
     onPressed: () {
-      context.read(Global_Provider).BlocDecrement();
+      context.read<CounterBloc>().add(CounterEvent.decrement);
     },
   );
 }
@@ -41,7 +43,7 @@ Widget MultipleButton(BuildContext context) {
       onPrimary: Colors.white,
     ),
     onPressed: () {
-      context.read(Global_Provider).BlocMultiple();
+      context.read<CounterBloc>().add(CounterEvent.multiple);
     },
   );
 }
@@ -55,7 +57,7 @@ Widget ClearButton(BuildContext context) {
       onPrimary: Colors.white,
     ),
     onPressed: () {
-      context.read(Global_Provider).BlocClear();
+      context.read<CounterBloc>().add(CounterEvent.clear);
     },
   );
 }
